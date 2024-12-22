@@ -43,5 +43,5 @@ jobs:
       - name: Deploy to GitHub Pages
         if: success()  # Выполнить деплой, если все шаги успешны
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run deploy
