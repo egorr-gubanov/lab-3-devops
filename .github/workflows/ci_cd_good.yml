@@ -40,7 +40,8 @@ jobs:
           git config --global user.email "egorr.gubanov@mail.ru"
           git config --global user.name "egorr-gubanov"
 
-
-      - name: deploy
-        if: success()  # Если все успешно, то деплоим
+      - name: Deploy to GitHub Pages
+        if: success()  # Выполнить деплой, если все шаги успешны
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy
