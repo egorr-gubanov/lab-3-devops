@@ -35,6 +35,12 @@ jobs:
       - name: tests
         run: npm test  # Если есть ошибки то тесты их покажут(иначе зачем они)
 
+      - name: Set up Git user
+        run: |
+          git config --global user.email "egorr.gubanov@mail.ru"
+          git config --global user.name "egorr-gubanov"
+
+
       - name: deploy
         if: success()  # Если все успешно, то деплоим
         run: npm run deploy
