@@ -25,7 +25,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "git@github.com:egorr-gubanov/lab-3-devops.github.io.git",
+  "homepage": "https://egorr-gubanov.github.io/lab-3-devops.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",
