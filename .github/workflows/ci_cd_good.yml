@@ -7,34 +7,34 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Актуальной версия (на работе node не скажется изменение)
+    runs-on: ubuntu-latest  # Актуальная версия
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3  # Новая версия обеспечит большую безопасность
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Новая версия с улучшенной производительностью и безопасностью
 
-      - name: node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Автоматическая установка Node.js
         with:
-          node-version: '20.x'  # Указана версия Node.js
+          node-version: '20.x'  # Указана актуальная версия Node.js
 
-      - name: cache
-        uses: actions/cache@v3  # Кешируем зависимости они не так часто обновляются
+      - name: Cache node modules
+        uses: actions/cache@v3  # Кэшируем зависимости для ускорения сборки
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules 
+            ${{ runner.os }}-node-modules
 
-      - name: dependencies
-        run: npm install --legacy-peer-deps  # В таком случае не возникнет ошибка в зависимостях
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps  # Установка зависимостей с учётом возможных конфликтов
 
-      - name: build
+      - name: Build the project
         run: npm run build
 
-      - name: tests
-        run: npm test  # Если есть ошибки то тесты их покажут(иначе зачем они)
+      - name: Run tests
+        run: npm test  # Тесты теперь обязательны для успешного завершения
 
-      - name: deploy
-        if: success()  # Выполнить деплой, если все шаги успешны
+      - name: Deploy to GitHub Pages
+        if: success()  # Деплой происходит только при успешной сборке и тестах
         run: echo project deployed
