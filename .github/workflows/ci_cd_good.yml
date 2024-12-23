@@ -35,13 +35,6 @@ jobs:
       - name: tests
         run: npm test  # Если есть ошибки то тесты их покажут(иначе зачем они)
 
-      - name: Set up Git user
-        run: |
-          git config --global user.email "${GITHUB_ACTOR}@https://users.noreply.github.com/"
-          git config --global user.name "${GITHUB_ACTOR}"
-
-      - name: Deploy to GitHub Pages
+      - name: deploy
         if: success()  # Выполнить деплой, если все шаги успешны
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run deploy
+        run: echo project deployed
