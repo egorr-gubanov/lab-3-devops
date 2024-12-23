@@ -35,17 +35,13 @@ jobs:
       - name: tests
         run: npm test  # Если есть ошибки то тесты их покажут(иначе зачем они)
 
-      - name: Set up Git user
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+#      - name: Set up Git user
+#        run: |
+#          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#          git config --global user.name "github-actions[bot]"
 
-      - name: Deploy to Fake Repository
-        run: |
-          mkdir -p /tmp/fake-repo
-          cd /tmp/fake-repo
-          git init
-          cp ../../../build/* .
-          git add .
-          git commit -m "Fake deploy"
-          echo "Fake deploy complete. No push performed."
+      - name: Deploy to GitHub Pages
+        if: success()  # Выполнить деплой, если все шаги успешны
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npm run deploy
