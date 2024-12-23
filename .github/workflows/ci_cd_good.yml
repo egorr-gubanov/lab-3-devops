@@ -45,7 +45,7 @@ jobs:
           mkdir -p /tmp/fake-repo
           cd /tmp/fake-repo
           git init
-          cp -r ../../build/* .
+          cp /build/* .
           git add .
           git commit -m "Fake deploy"
           echo "Fake deploy complete. No push performed."
