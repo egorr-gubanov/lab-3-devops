@@ -16,7 +16,7 @@ jobs:
       - name: node.js
         run: |
           sudo apt-get update
-          sudo apt-get install -y nodejs npm  # Установка Node.js вручную
+          sudo apt-get install -y nodejs npm  # Установка Node.js просто вручную
 
       - name: installing
         run: npm install  # Нет проверки на конфликты (--legacy-peer-deps)
